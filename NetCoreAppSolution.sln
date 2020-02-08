@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreApp", "NetCoreApp\NetCoreApp.csproj", "{2FADAE31-08E8-43CA-A380-0BC214BDE9DE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AB771B7B-3028-4D68-9E29-BD443675E6E5}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2FADAE31-08E8-43CA-A380-0BC214BDE9DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FADAE31-08E8-43CA-A380-0BC214BDE9DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FADAE31-08E8-43CA-A380-0BC214BDE9DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FADAE31-08E8-43CA-A380-0BC214BDE9DE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {72BD4D1F-90A4-442E-A0D4-D44AD9E7378F}
+	EndGlobalSection
+EndGlobal
