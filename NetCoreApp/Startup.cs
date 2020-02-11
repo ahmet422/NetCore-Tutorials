@@ -65,7 +65,12 @@ namespace NetCoreApp
 
             // used to get files from wwwroot folder directly.
             app.UseStaticFiles();
-            app.UseMvcWithDefaultRoute();
+            //app.UseMvc(); // if we use app.UseMvc() we will need to put [Route("~/Home")] attribute routings in controller classes
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
+            }); // => doesnt come with any route services, thats why we pass arguments manually
+            //app.UseMvcWithDefaultRoute(); //=> comes with route services
             //app.UseFileServer();
             //app.UseRouting();
             //app.Run(async (context) => 
@@ -73,7 +78,7 @@ namespace NetCoreApp
             //        //throw new Exception("Some erro processing the request");
             //        await context.Response.WriteAsync("Hosting Environment: " + env.EnvironmentName);
             //    });
-            
+
         }
     }
 }
