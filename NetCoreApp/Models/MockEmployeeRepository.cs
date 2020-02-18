@@ -13,11 +13,18 @@ namespace NetCoreApp.Models
         {
             _employeeList = new List<Employee>()
             {
-                new Employee() {Id = 1, Name = "Mary", Department = "HR", Email = "sample@gmail.com"},
-                new Employee() {Id = 2, Name = "Peter", Department = "IT", Email = "sample@gmail.com"},
-                new Employee() {Id = 3, Name = "Andrey", Department = "Office", Email = "sample@gmail.com"}
+                new Employee() {Id = 1, Name = "Mary", Department = Dept.Hr, Email = "sample@gmail.com"},
+                new Employee() {Id = 2, Name = "Peter", Department = Dept.IT, Email = "sample@gmail.com"},
+                new Employee() {Id = 3, Name = "Andrey", Department = Dept.IT, Email = "sample@gmail.com"}
             };
 
+        }
+
+        public Employee Add(Employee employee)
+        {
+           employee.Id = _employeeList.Max(e => e.Id) + 1;
+           _employeeList.Add(employee);
+            return employee;
         }
 
         public IEnumerable<Employee> GetAllEmployee()

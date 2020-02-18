@@ -44,3 +44,4 @@ C:\Users\Dell\Source\Repos\NetCoreAppSolution\NetCoreApp\bin\Debug\netcoreapp3.1
 C:\Users\Dell\Source\Repos\NetCoreAppSolution\NetCoreApp\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Security.Cryptography.Pkcs.dll
 C:\Users\Dell\Source\Repos\NetCoreAppSolution\NetCoreApp\obj\Debug\netcoreapp3.1\NetCoreApp.csprojAssemblyReference.cache
 C:\Users\Dell\Source\Repos\NetCoreAppSolution\NetCoreApp\obj\Debug\netcoreapp3.1\NetCoreApp.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Dell\Source\Repos\NetCoreAppSolution\NetCoreApp\obj\Debug\netcoreapp3.1\Razor\Views\Home\Create.cshtml.g.cs
