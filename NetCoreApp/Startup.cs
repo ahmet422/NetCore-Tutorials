@@ -9,6 +9,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NetCoreApp.Models;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace NetCoreApp
 {
@@ -24,9 +26,14 @@ namespace NetCoreApp
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            // better than AddDbContext method
+            services.AddDbContextPool<AppDbContext>(
+                options => options.UseSqlServer(_config.GetConnectionString("EmployeeDBConnection")));
+            services.AddMvc().AddXmlSerializerFormatters();
             services.AddMvc(option => option.EnableEndpointRouting = false);
-            services.AddSingleton<IEmployeeRepository, MockEmployeeRepository>();   
+            services.AddScoped<IEmployeeRepository, SqlEmployeeRepository>(); // AddScope? because we want sql to be alive and available 
+          //  services.AddTransient<IEmployeeRepository, SqlEmployeeRepository>();
+          //  services.AddSingleton<IEmployeeRepository, MockEmployeeRepository>();
 
         }
 
