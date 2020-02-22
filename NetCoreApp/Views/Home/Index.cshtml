@@ -3,7 +3,9 @@
 @{
     //
     ViewBag.Title = "Employee List";
+  
 }
+
 
 @*<table>
         <thead>
@@ -20,7 +22,7 @@
                     <td> @employee.Id</td>
                     <td> @employee.Name</td>
                     <td> @employee.Department</td>
-                </tr>  
+                </tr>
             }
         </tbody>
     </table>*@
@@ -28,20 +30,23 @@
 <div class=" card-deck">
     @foreach (var employee in Model)
     {
-        <div class=" card m-3">
-            <div class=" card-header text-center">
-                <h3>@employee.Name</h3>
-            </div>
-            <img class="card-img-top" src="~/images/elephant.jpg" asp-append-version="true" />
-            <div class="card-footer text-center">
-                <a asp-controller="Home" asp-action="Details" asp-route-id="@employee.Id" class="btn btn-primary m-1">View</a>
-                @*<a href="@Url.Action("details", "home", new {id = employee.Id })" class="btn btn-primary">View</a>*@ 
-                @*@Html.ActionLink("View","details", "home", new { id = employee.Id})*@
-                @*<a href="#" class="btn btn-primary">View</a>*@
-                <a href="#" class="btn btn-primary m-1">Edit</a>
-                <a href="#" class="btn btn-danger m-1">Delete</a>
-            </div>
+        var photPath = "~/images/" + (employee.PhotoPath ?? "noPic.jgp"); /*// ?? "noimage.jgp" is for cases if we have no image path*/
+        // style="min-width:18rem; max-width:30.5% is for having only 3 cards on one row
+    <div class="card m-3" style="min-width:18rem; max-width:30.5%;">
+        <div class=" card-header text-center">
+            <h3>@employee.Name</h3>
         </div>
+        @*// imgThumbnail class comes from wwwroot/css/ to put all images in one size*@
+        <img class="card-img-top imgThumbnail" src="@photPath" asp-append-version="true" />
+        <div class="card-footer text-center">
+            <a asp-controller="Home" asp-action="Details" asp-route-id="@employee.Id" class="btn btn-primary m-1">View</a>
+            @*<a href="@Url.Action("details", "home", new {id = employee.Id })" class="btn btn-primary">View</a>*@
+            @*@Html.ActionLink("View","details", "home", new { id = employee.Id})*@
+            @*<a href="#" class="btn btn-primary">View</a>*@
+            <a href="#" class="btn btn-primary m-1">Edit</a>
+            <a href="#" class="btn btn-danger m-1">Delete</a>
+        </div>
+    </div>
     }
 
 </div>

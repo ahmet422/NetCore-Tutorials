@@ -44,7 +44,6 @@ C:\Users\Dell\Source\Repos\NetCoreAppSolution\NetCoreApp\bin\Debug\netcoreapp3.1
 C:\Users\Dell\Source\Repos\NetCoreAppSolution\NetCoreApp\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Security.Cryptography.Pkcs.dll
 C:\Users\Dell\Source\Repos\NetCoreAppSolution\NetCoreApp\obj\Debug\netcoreapp3.1\NetCoreApp.csprojAssemblyReference.cache
 C:\Users\Dell\Source\Repos\NetCoreAppSolution\NetCoreApp\obj\Debug\netcoreapp3.1\Razor\Views\Home\Create.cshtml.g.cs
-C:\Users\Dell\Source\Repos\NetCoreAppSolution\NetCoreApp\obj\Debug\netcoreapp3.1\NetCoreApp.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Dell\Source\Repos\NetCoreAppSolution\NetCoreApp\bin\Debug\netcoreapp3.1\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\Dell\Source\Repos\NetCoreAppSolution\NetCoreApp\bin\Debug\netcoreapp3.1\Microsoft.Bcl.HashCode.dll
 C:\Users\Dell\Source\Repos\NetCoreAppSolution\NetCoreApp\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.dll
@@ -75,3 +74,5 @@ C:\Users\Dell\Source\Repos\NetCoreAppSolution\NetCoreApp\bin\Debug\netcoreapp3.1
 C:\Users\Dell\Source\Repos\NetCoreAppSolution\NetCoreApp\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\Dell\Source\Repos\NetCoreAppSolution\NetCoreApp\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\Dell\Source\Repos\NetCoreAppSolution\NetCoreApp\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\Dell\Source\Repos\NetCoreAppSolution\NetCoreApp\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\Dell\Source\Repos\NetCoreAppSolution\NetCoreApp\obj\Debug\netcoreapp3.1\NetCoreApp.MvcApplicationPartsAssemblyInfo.cache

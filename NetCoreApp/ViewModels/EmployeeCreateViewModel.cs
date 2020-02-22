@@ -3,26 +3,27 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using NetCoreApp.Models;
 
-namespace NetCoreApp.Models
+namespace NetCoreApp.ViewModels
 {
-    public class Employee
+    public class EmployeeCreateViewModel
     {
-        public int Id { get; set; }
-
+    
         [Required]
         [MaxLength(50, ErrorMessage = "Name can not exceed 50 charachters")]
         public string Name { get; set; }
 
-        [Required] 
-        [EmailAddress] 
+        [Required]
+        [EmailAddress]
         [Display(Name = "Office Email ")]
         public string Email { get; set; }
 
         [Required]
-        public Dept?  Department { get; set; }
-
-        public string PhotoPath { get; set; }
-       
+        public Dept? Department { get; set; }
+        // for selecting sincle photo use "IFormFile" 
+        // for selecting many use List<IFormFile>
+        public List<IFormFile> Photos { get; set; }
     }
 }

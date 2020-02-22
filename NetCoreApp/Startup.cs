@@ -45,12 +45,13 @@ namespace NetCoreApp
                 app.UseDeveloperExceptionPage();
             }
 
+        
 
             //DefaultFilesOptions defaultFilesOptions = new DefaultFilesOptions();
             //defaultFilesOptions.DefaultFileNames.Clear();
             //defaultFilesOptions.DefaultFileNames.Add("htmlpage.html");
 
-           
+
             // app.UseDefaultFiles() does not actually serve to the default file but instead it changes the request part 
             // to point to the default document, in this case to point default.html file in wwwroot folder
             // with "htmlpage" argument we specified which file needs to be considered as default page

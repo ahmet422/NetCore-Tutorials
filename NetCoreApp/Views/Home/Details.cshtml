@@ -3,6 +3,7 @@
 @{
 
     ViewBag.Title = "Employee Details";
+    var photPath = "~/images/" + (Model.Employee.PhotoPath ?? "noPic.jgp"); // ?? "noimage.jgp" is for cases if we have no image path
 }
 @*<h3>
         @Model.PageTitle
@@ -20,7 +21,7 @@
             </div>
 
             <div class=" card-body text-center">
-                <img class="card-img-top" src="~/images/elephant.jpg" />
+                <img class="card-img-top" src="@photPath" asp-append-version="true" />
 
                 <h4>Employee ID: @Model.Employee.Id</h4>
                 <h4>Email : @Model.Employee.Email</h4>
