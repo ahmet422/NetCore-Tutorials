@@ -44,6 +44,11 @@ namespace NetCoreApp
             {
                 app.UseDeveloperExceptionPage();
             }
+            else 
+            {
+                // will work only in productin stage
+                app.UseStatusCodePagesWithRedirects("/Error/{0}");
+            }
 
         
 

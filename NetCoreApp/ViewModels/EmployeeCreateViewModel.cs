@@ -24,6 +24,6 @@ namespace NetCoreApp.ViewModels
         public Dept? Department { get; set; }
         // for selecting sincle photo use "IFormFile" 
         // for selecting many use List<IFormFile>
-        public List<IFormFile> Photos { get; set; }
+        public IFormFile Photos { get; set; }
     }
 }

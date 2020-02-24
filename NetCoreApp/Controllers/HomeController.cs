@@ -33,9 +33,18 @@ namespace NetCoreApp.Controllers
         //[Route("{id?}")]
         public ViewResult Details(int? id)
         {
+
+            Employee employee = _employeeRepository.GetEmployee(id.Value);
+
+            if (employee == null)
+            {
+                Response.StatusCode = 404;
+                return View("EmployeeNotFound", id.Value);
+
+            }
             HomeDetailsViewModel homeDetailsViewModel = new HomeDetailsViewModel()
             {
-                Employee  = _employeeRepository.GetEmployee(id??1),
+                Employee  = employee,
                 PageTitle = "Employee Details"
             };
             
@@ -51,30 +60,89 @@ namespace NetCoreApp.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ViewResult Edit(int id)
+        {
+            Employee employee = _employeeRepository.GetEmployee(id);
+            EmployeeEditViewModel employeeEditViewModel = new EmployeeEditViewModel
+            {
+                Id = employee.Id,
+                Name = employee.Name,
+                Email = employee.Email,
+                Department = employee.Department,
+                ExistingPhotoPath = employee.PhotoPath
+            }; 
+            return View(employeeEditViewModel);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(EmployeeEditViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                Employee employee = _employeeRepository.GetEmployee(model.Id);
+                employee.Name = model.Name;
+                employee.Email = model.Email;
+                employee.Department = model.Department;
+
+                // change photo only if new photo is selected otherwise photo is not going to change
+                if (model.Photos != null)
+                {
+                    // if a new photo selected we need to get rid off previoud one from the database... below code is how its done
+                    if (model.ExistingPhotoPath != null)
+                    {
+                       string filePath = Path.Combine("wwwroot", "images", model.ExistingPhotoPath);
+                       System.IO.File.Delete(filePath); 
+                    }
+                    employee.PhotoPath = ProcessUploadedFile(model);
+                }
+
+                _employeeRepository.Update(employee);
+              
+                return RedirectToAction("index");
+            }
+            return View();
+
+
+        }
+
+        private static string ProcessUploadedFile(EmployeeCreateViewModel model)
+        {
+            string uniqueFileName = null;
+            if (model.Photos != null)
+            {
+                //foreach (IFormFile photo in model.Photos) for many selections
+
+                // this line is just to return a string with a path that will be used to save the photo
+                string uploadsFolder = Path.Combine("wwwroot", "images"); // the below code is a right way but for now this works fine
+                                                                          //if (string.IsNullOrWhiteSpace(hostingEnvironment.WebRootPath))
+                                                                          //{
+                                                                          //    hostingEnvironment.WebRootPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
+                                                                          //}
+                                                                          //string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "images");
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Photos.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                // the line below is needed to avoid errors related to a file being used by 2 processes at the same time (create then edit)
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    model.Photos.CopyTo(fileStream);
+
+                }
+                   
+
+
+            }
+
+            return uniqueFileName;
+        }
+
         [HttpPost]
         public IActionResult Create(EmployeeCreateViewModel model)
-        {
+        {  
             if (ModelState.IsValid) 
             {
-                string uniqueFileName = null;
-                if (model.Photos != null && model.Photos.Count > 0)
-                {
-                    foreach (IFormFile photo in model.Photos) 
-                    {
-                        // this line is just to return a string with a path that will be used to save the photo
-                        string uploadsFolder = Path.Combine("wwwroot", "images"); // the below code is a right way but for now this works fine
-                                                                                  //if (string.IsNullOrWhiteSpace(hostingEnvironment.WebRootPath))
-                                                                                  //{
-                                                                                  //    hostingEnvironment.WebRootPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
-                                                                                  //}
-                                                                                  //string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "images");
-                        uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(photo.FileName);
-                        string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-
-                        photo.CopyTo(new FileStream(filePath, FileMode.Create));
-                    }
-                    
-                }
+                string uniqueFileName = ProcessUploadedFile(model);
                 Employee newEmployee = new Employee
                 { 
                     Name = model.Name,
