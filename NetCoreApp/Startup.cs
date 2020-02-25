@@ -38,7 +38,7 @@ namespace NetCoreApp
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, Microsoft.AspNetCore.Hosting.IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -46,8 +46,9 @@ namespace NetCoreApp
             }
             else 
             {
-                // will work only in productin stage
-                app.UseStatusCodePagesWithRedirects("/Error/{0}");
+                // will work only in productin/staging etc stage
+                app.UseExceptionHandler("/Error");
+                app.UseStatusCodePagesWithReExecute("/Error/{0}");
             }
 
         
