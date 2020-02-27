@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using NetCoreApp.Models;
 using NetCoreApp.ViewModels;
 
@@ -17,8 +18,16 @@ namespace NetCoreApp.Controllers
     {
          private readonly IEmployeeRepository _employeeRepository;
          private readonly IHostingEnvironment hostingEnvironment;
+        private readonly ILogger logger;
         // IHOstingEnvironment is used to take photo and put it under wwwroot\images\ folder
-        public HomeController(IEmployeeRepository employeeRepository, IHostingEnvironment hostingEnvironment) => _employeeRepository = employeeRepository;
+        public HomeController(IEmployeeRepository employeeRepository,
+            IHostingEnvironment hostingEnvironment,
+            ILogger<HomeController> logger) 
+        {
+            _employeeRepository = employeeRepository;
+            this.hostingEnvironment = hostingEnvironment;
+            this.logger = logger;
+        } 
         
         //[Route("~/Home")]
         //[Route("~/")]
@@ -30,10 +39,13 @@ namespace NetCoreApp.Controllers
             return View(model);
         }
 
+        
+
         //[Route("{id?}")]
         public ViewResult Details(int? id)
         {
-            throw new Exception("Error in Details View");
+            //  throw new Exception("Error in Details View");
+           
 
             Employee employee = _employeeRepository.GetEmployee(id.Value); 
 

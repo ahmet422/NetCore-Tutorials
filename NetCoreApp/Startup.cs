@@ -10,7 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NetCoreApp.Models;
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.AspNetCore.Identity;
 
 namespace NetCoreApp
 {
@@ -29,6 +29,20 @@ namespace NetCoreApp
             // better than AddDbContext method
             services.AddDbContextPool<AppDbContext>(
                 options => options.UseSqlServer(_config.GetConnectionString("EmployeeDBConnection")));
+            services.AddIdentity<IdentityUser, IdentityRole>(options => 
+            {
+                options.Password.RequiredLength = 10;
+                options.Password.RequiredUniqueChars = 2;
+               
+            }).AddEntityFrameworkStores<AppDbContext>();
+
+            //services.Configure<IdentityOptions>(options => // this is how we play with password settings
+            //{
+            //    options.Password.RequiredLength = 10;
+            //    options.Password.RequiredUniqueChars = 2;
+            //    options.Password.RequireNonAlphanumeric = false;
+            //});
+
             services.AddMvc().AddXmlSerializerFormatters();
             services.AddMvc(option => option.EnableEndpointRouting = false);
             services.AddScoped<IEmployeeRepository, SqlEmployeeRepository>(); // AddScope? because we want sql to be alive and available 
@@ -79,6 +93,7 @@ namespace NetCoreApp
 
             // used to get files from wwwroot folder directly.
             app.UseStaticFiles();
+            app.UseAuthentication();
             //app.UseMvc(); // if we use app.UseMvc() we will need to put [Route("~/Home")] attribute routings in controller classes
             app.UseMvc(routes =>
             {

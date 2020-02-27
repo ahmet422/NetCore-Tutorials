@@ -2,16 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 
 namespace NetCoreApp.Models
 {
     public class SqlEmployeeRepository : IEmployeeRepository
     {
         private readonly AppDbContext context;
+        private readonly ILogger<SqlEmployeeRepository> logger;
 
-        public SqlEmployeeRepository(AppDbContext context)
+        public SqlEmployeeRepository(AppDbContext context,ILogger<SqlEmployeeRepository> logger)
         {
             this.context = context;
+            this.logger = logger;
         }
         public Employee Add(Employee employee)
         {
@@ -39,7 +42,14 @@ namespace NetCoreApp.Models
 
         public Employee GetEmployee(int Id)
         {
-           return context.Employees.Find(Id);
+            logger.LogTrace("Trace Log");
+            logger.LogDebug("Debug Log");
+            logger.LogInformation("Information Log");
+            logger.LogWarning("Warning Log");
+            logger.LogError("Error Log");
+            logger.LogCritical("Critical Log");
+
+            return context.Employees.Find(Id);
            
         }
 
