@@ -11,6 +11,8 @@ using Microsoft.Extensions.Hosting;
 using NetCoreApp.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 namespace NetCoreApp
 {
@@ -43,7 +45,10 @@ namespace NetCoreApp
             //    options.Password.RequireNonAlphanumeric = false;
             //});
 
-            services.AddMvc().AddXmlSerializerFormatters();
+            services.AddMvc(options=> {
+                var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+                options.Filters.Add(new AuthorizeFilter(policy));
+            }).AddXmlSerializerFormatters();
             services.AddMvc(option => option.EnableEndpointRouting = false);
             services.AddScoped<IEmployeeRepository, SqlEmployeeRepository>(); // AddScope? because we want sql to be alive and available 
           //  services.AddTransient<IEmployeeRepository, SqlEmployeeRepository>();

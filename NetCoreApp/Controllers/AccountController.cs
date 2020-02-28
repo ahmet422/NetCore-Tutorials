@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using NetCoreApp.ViewModels;
@@ -22,6 +23,7 @@ namespace NetCoreApp.Controllers
         }
         // GET: /<controller>/
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Register()
         {
             return View();
@@ -50,13 +52,15 @@ namespace NetCoreApp.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginViewModel model)
+        [AllowAnonymous]
+        public async Task<IActionResult> Login(LoginViewModel model, string returnUrl)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +69,15 @@ namespace NetCoreApp.Controllers
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("index", "home");
+                    if (!string.IsNullOrEmpty(returnUrl))
+                    {
+                        return Redirect(returnUrl);
+                    }
+                    else
+                    {
+                        return RedirectToAction("index", "home");
+                    }
+                
                 }
 
                 ModelState.AddModelError(string.Empty, "Invalid Login Attempt"); // these validation errors are displayed in Login View by asp-validation-summary = "All" tag helper

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,6 +15,7 @@ using NetCoreApp.ViewModels;
 namespace NetCoreApp.Controllers
 {
     //[Route("[controller]/[action]")] // => we added [Route("Home")] here not to repeat it in under part
+    [Authorize]
     public class HomeController : Controller
     {
          private readonly IEmployeeRepository _employeeRepository;
@@ -27,11 +29,11 @@ namespace NetCoreApp.Controllers
             _employeeRepository = employeeRepository;
             this.hostingEnvironment = hostingEnvironment;
             this.logger = logger;
-        } 
-        
+        }
+
         //[Route("~/Home")]
         //[Route("~/")]
-
+        [AllowAnonymous]
         public ViewResult Index() 
         {
 
@@ -39,9 +41,10 @@ namespace NetCoreApp.Controllers
             return View(model);
         }
 
-        
+
 
         //[Route("{id?}")]
+        [AllowAnonymous] // allows anonymous users to get access to certain view
         public ViewResult Details(int? id)
         {
             //  throw new Exception("Error in Details View");
@@ -68,6 +71,7 @@ namespace NetCoreApp.Controllers
         }
 
         [HttpGet]
+
         public ViewResult Create()
         {
             return View();
