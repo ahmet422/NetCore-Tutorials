@@ -12,6 +12,8 @@
     <Compile Remove="Migrations\20200221203210_AddPhotoPathColumn.Designer.cs" />
     <Compile Remove="Migrations\20200221203447_AddNewProp.cs" />
     <Compile Remove="Migrations\20200221203447_AddNewProp.Designer.cs" />
+    <Compile Remove="Migrations\20200309211820_ExtendIdentityUser.cs" />
+    <Compile Remove="Migrations\20200309211820_ExtendIdentityUser.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
