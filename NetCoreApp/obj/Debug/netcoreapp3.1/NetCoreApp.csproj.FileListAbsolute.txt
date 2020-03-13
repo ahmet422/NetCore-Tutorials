@@ -94,3 +94,4 @@ C:\Users\Dell\Source\Repos\NetCoreAppSolution\NetCoreApp\obj\Debug\netcoreapp3.1
 C:\Users\Dell\Source\Repos\NetCoreAppSolution\NetCoreApp\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs
 C:\Users\Dell\Source\Repos\NetCoreAppSolution\NetCoreApp\obj\Debug\netcoreapp3.1\Razor\Views\Administration\CreateRole.cshtml.g.cs
 C:\Users\Dell\Source\Repos\NetCoreAppSolution\NetCoreApp\obj\Debug\netcoreapp3.1\Razor\Views\Administration\ListRoles.cshtml.g.cs
+C:\Users\Dell\Source\Repos\NetCoreAppSolution\NetCoreApp\obj\Debug\netcoreapp3.1\Razor\Views\Administration\EditRole.cshtml.g.cs
